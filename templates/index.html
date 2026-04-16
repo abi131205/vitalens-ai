@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VitaLens AI</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7fa;
+            text-align: center;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+            margin-top: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .high {
+            color: red;
+            font-weight: bold;
+        }
+
+        .medium {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .low {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>VitaLens AI</h1>
+        <p>See your health before it happens</p>
+
+        <form method="POST">
+            <input type="text" name="symptoms" placeholder="Enter symptoms" required>
+            <input type="number" name="sleep" placeholder="Sleep hours" required>
+            <input type="number" name="steps" placeholder="Steps walked" required>
+            <input type="text" name="stress" placeholder="Stress level" required>
+            <button type="submit">Analyze</button>
+        </form>
+
+        {% if result %}
+        <div class="result" style="margin-top:20px; padding:15px; border-radius:8px; background:#f9f9f9;">
+
+            <h2 style="text-align:center;">🧠 Health Analysis Report</h2>
+
+            <p><b>Risk Level:</b>
+                <span class="{{ result.risk|lower }}" style="font-size:18px; font-weight:bold;">
+                    {{ result.risk }}
+                </span>
+            </p>
+
+            <hr>
+
+            <p><b>🔮 Prediction:</b><br> {{ result.prediction }}</p>
+
+            <p><b>📖 Explanation:</b><br> {{ result.explanation }}</p>
+
+            <p><b>💡 Suggestions:</b><br> {{ result.suggestion }}</p>
+
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
